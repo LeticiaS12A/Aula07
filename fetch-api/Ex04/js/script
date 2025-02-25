@@ -1,0 +1,20 @@
+const imgCachorro =  document.getElementById('imagemCachorro')
+const btnNovoCachorro = document.getElementById('novoCachoro')
+
+// vamos implementar uma função que pegue a imagem do cachorro
+// no web service dog.ceo
+async function fetchImagem(params) {
+    try{
+        const reponse = await fetch('https://dog.ceo/api/breeds/image/random')
+        const dado = await reponse.json()
+        imgCachorro.src = dado.message;
+    }
+
+    catch(error){
+        imgCachorro.src = '';
+        imgCachorro.alt = 'Erro ao buscar a imagem'
+    }
+}
+
+btnNovoCachorro.addEventListener('click', fetchImagem)
+fetchImagem();
